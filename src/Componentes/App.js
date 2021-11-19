@@ -2,6 +2,7 @@ import React from 'react'
 import PersonasLista from './Personas/PersonasLista';
 import PersonasDetalle from './Personas/PersonasDetalle';
 import PersonasForm from './Personas/PersonasForm';
+import axios from 'axios';
 
 class App extends React.Component {
 
@@ -13,6 +14,18 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount(){
+      const url="http://localhost:5000/contactos"
+      axios.get(url)
+            .then( (respuesta)=> {   
+                this.setState({
+                      personas: respuesta.data
+                })  
+            })
+            .catch( (error) => {console.log(error)}  )
+  }
+
+
   render(){
     return (
       <div className="container-fluid">
@@ -23,7 +36,10 @@ class App extends React.Component {
           </div>
           <div className="row">
               <div className="col s3">
-                  <PersonasLista />
+                  <PersonasLista  
+                            listapersonas={ this.state.personas } 
+                            numero = {1}
+                  />
               </div>
               <div className="col s9">
                   <PersonasDetalle />
