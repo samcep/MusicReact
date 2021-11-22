@@ -11,6 +11,7 @@ const PersonasLista = (props) => {
                                 <li 
                                     className="collection-item"
                                     key={ elemento._id }
+                                    onClick={ props.actualizarPersona.bind(this , elemento   ) }
                                 >
                                     { elemento.nombre }  {elemento.apellido}
                                 </li>

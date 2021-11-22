@@ -12,6 +12,9 @@ class App extends React.Component {
        personas : [],
        personaActual: {}
     }
+
+    //vincular la funcion actualizarPErsona al objeto
+    this.actualizarPersona = this.actualizarPersona.bind(this)
   }
 
   componentDidMount(){
@@ -26,23 +29,36 @@ class App extends React.Component {
   }
 
 
+  //funcion para asignar personaActual
+  actualizarPersona(persona) {
+      this.setState({
+          personaActual: persona
+      })
+  }
+
+
   render(){
     return (
       <div className="container-fluid">
           <div className="row">
               <div className="col s12">
-                  Menu
+                <nav>
+                    <div className="nav-wrapper blue darken-4">
+                    <a href="#!" className="brand-logo ">persona CRM</a>
+                   
+                    </div>
+                </nav>
               </div>
           </div>
           <div className="row">
               <div className="col s3">
                   <PersonasLista  
                             listapersonas={ this.state.personas } 
-                            numero = {1}
+                            actualizarPersona = { this.actualizarPersona }
                   />
               </div>
               <div className="col s9">
-                  <PersonasDetalle />
+                  <PersonasDetalle  personita={ this.state.personaActual }  />
               </div>
           </div>
           <div className="row">
