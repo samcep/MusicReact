@@ -16,12 +16,12 @@ class PersonasForm extends React.Component{
         //anular comportamiento por defecto del form
         event.preventDefault()
         //peticion con axios
-        axios.post('http://localhost:5000/contactos' , {
-                                                           nombre: this.refs.nombre.value,
-                                                           apellido:  this.refs.apellido.value,
-                                                           email:  this.refs.email.value,
-                                                           telefono:  this.refs.telefono.value,
-                                                           empresa:  this.refs.empresa.value,
+        axios.post('http://localhost:5000/canciones' , {
+                                                           nombreCancion: this.refs.nombreCancion.value,
+                                                           nombreAutor:  this.refs.nombreAutor.value,
+                                                           genero:  this.refs.genero.value,
+                                                           duracion:  this.refs.duracion.value,
+                                                           
                                                        }
         ).then(  respuesta => console.log(respuesta.data))
          .catch( error => console.log(error)  )
@@ -31,35 +31,32 @@ class PersonasForm extends React.Component{
     render(){
        return(
         <div className="row">
-            <h5 className="center"> Nuevo Contacto  </h5>  
+            <h5 className="center"> Agregar Canción  </h5>  
             <form className="col s12" onSubmit={ this.submitNuevaPersona.bind(this) }>
                 <div className="row">
                     <div className="input-field col s6">
-                        <input id="nombre" ref="nombre" type="text"  />
-                        <label htmlFor="nombre">Nombre</label>
+                        <input id="nombreCancion" ref="nombreCancion" type="text"  />
+                        <label htmlFor="nombreCancion">Nombre Canción</label>
                     </div>
                     <div className="input-field col s6">
-                        <input id="apellido" ref="apellido" type="text" />
-                        <label htmlFor="apellido">Apellido</label>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="input-field col s6">
-                        <input id="email" ref="email" type="text" />
-                        <label htmlFor="email">Email</label>
-                    </div>
-                    <div className="input-field col s6">
-                        <input id="telefono" ref="telefono" type="text" />
-                        <label htmlFor="telefono">Telefono</label>
+                        <input id="nombreAutor" ref="nombreAutor" type="text" />
+                        <label htmlFor="nombreAutor">Nombre  Autor</label>
                     </div>
                 </div>
                 <div className="row">
                     <div className="input-field col s6">
-                        <input id="empresa" ref="empresa" type="text" />
-                        <label htmlFor="empresa">Empresa</label>
+                        <input id="genero" ref="genero" type="text" />
+                        <label htmlFor="genero">Genero</label>
                     </div>
                     <div className="input-field col s6">
-                        <button type="submit" className="btn waves-effect waves-light" name="action">
+                        <input id="duracion" ref="duracion" type="text" />
+                        <label htmlFor="duracion">Duracion</label>
+                    </div>
+                </div>
+                <div className="row">
+                 
+                    <div className="input-field col s6">
+                        <button type="submit" className="btn waves-effect green waves-light" name="action">
                             Guardar
                         </button>
                     </div>

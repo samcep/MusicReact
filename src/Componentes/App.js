@@ -18,7 +18,7 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-      const url="http://localhost:5000/contactos"
+      const url="http://localhost:5000/canciones"
       axios.get(url)
             .then( (respuesta)=> {   
                 this.setState({
@@ -29,12 +29,28 @@ class App extends React.Component {
   }
 
 
+
   //funcion para asignar personaActual
   actualizarPersona(persona) {
       this.setState({
           personaActual: persona
       })
-  }
+  };
+
+  borrarCancion({_id:id}){
+   console.log(id);
+   const url=`http://localhost:5000/canciones/${id}`;
+      axios.delete(url)
+      .then( (respuesta)=> {   
+        this.setState({
+              personas: respuesta.data
+        })
+        
+    })
+        .catch( (error) => {console.log(error)}  )
+};
+  
+
 
 
   render(){
@@ -42,12 +58,12 @@ class App extends React.Component {
       <div className="container-fluid">
           <div className="row">
               <div className="col s12">
-                <nav>
-                    <div className="nav-wrapper blue darken-4">
-                    <a href="#!" className="brand-logo ">persona CRM</a>
-                   
-                    </div>
-                </nav>
+              <nav>
+                <div class="nav-wrapper green">
+                <a href="#" class="brand-logo"> Música</a>
+               
+    </div>
+  </nav>
               </div>
           </div>
           <div className="row">
@@ -55,6 +71,8 @@ class App extends React.Component {
                   <PersonasLista  
                             listapersonas={ this.state.personas } 
                             actualizarPersona = { this.actualizarPersona }
+                            borrarCancion = {this.borrarCancion}
+
                   />
               </div>
               <div className="col s9">
